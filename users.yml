@@ -1,0 +1,17 @@
+---
+- name: User Management
+  hosts: webserver
+  become: true
+
+  tasks:
+  - name: Add user maxm
+    user:
+      name: maxm
+      comment: Max Mustermann
+      uid: 1010
+      
+  - name: Add user ericam
+    user:
+      name: ericam
+      comment: Erica Mustermann
+      uid: 1011

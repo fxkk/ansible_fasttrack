@@ -1,0 +1,9 @@
+---
+- name: Setup Webserver
+  hosts: webserver
+  become: true
+  tasks:
+  - name: Install httpd
+    package:
+      name: httpd
+      state: present
