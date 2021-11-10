@@ -1,0 +1,11 @@
+---
+- name: Play with variables
+  hosts: node1
+  vars_files:
+  - vars/my_vars.yml
+      
+  tasks:
+  - name: print my variables
+    debug:
+      msg:
+      - "{{ my_colors['sky'] }}"

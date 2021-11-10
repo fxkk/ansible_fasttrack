@@ -1,0 +1,18 @@
+---
+my_message: "Lorem Ipsum"
+my_second_msg: Lorem Ipsum
+
+my_num: 10
+my_float: 2.5
+
+my_animals:
+- dogs
+- cats
+
+my_key: sky
+
+my_colors:
+  sky: blue
+  grass: green
+
+my_text: "I have {{ my_num + my_float }} {{ my_animals[0] }}"
