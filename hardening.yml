@@ -1,0 +1,15 @@
+---
+- name: ssh hardening
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Ensure password authentication is disabled
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication'
+      line: 'PasswordAuthentication no'
+
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted

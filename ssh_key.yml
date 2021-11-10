@@ -1,0 +1,9 @@
+---
+- name: Create SSH key
+  hosts: localhost
+  tasks:
+  - name: Generate an OpenSSH keypair
+    community.crypto.openssh_keypair:
+      path: ~/.ssh/id_ecdsa
+      type: ecdsa
+

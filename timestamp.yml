@@ -1,0 +1,6 @@
+---
+- name: Log current time
+  hosts: node1
+  tasks:
+  - name: write timelog
+    shell: date >> ~/timelog.txt
