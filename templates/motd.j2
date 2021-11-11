@@ -6,3 +6,7 @@ Reachable via:
 {% for ip in ansible_all_ipv4_addresses %}
 # {{ ip }}
 {% endfor %}
+
+
+Doc Fact of the Day:
+{{ dog_facts.json | map(attribute='fact') | list | random }}
