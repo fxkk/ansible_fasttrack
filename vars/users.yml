@@ -1,0 +1,10 @@
+---
+user_list:
+- name: maxm
+  comment: Max Mustermann
+  uid: 1010
+  password: max123
+- name: ericam
+  comment: Erica Mustermann
+  uid: 1011
+  password: erica456

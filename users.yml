@@ -1,17 +1,16 @@
 ---
 - name: User Management
   hosts: webserver
+  vars_files:
+  - vars/users.yml
   become: true
 
   tasks:
-  - name: Add user maxm
+  - name: Create Users
     user:
-      name: maxm
-      comment: Max Mustermann
-      uid: 1010
+      name: "{{ item.name }}"
+      comment: "{{ item.comment }}"
+      uid: "{{ item.uid }}"
+      password: "{{ item.password | password_hash('sha512') }}"
+    loop: "{{ user_list }}"
       
-  - name: Add user ericam
-    user:
-      name: ericam
-      comment: Erica Mustermann
-      uid: 1011
