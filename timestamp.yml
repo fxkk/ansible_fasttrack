@@ -3,4 +3,9 @@
   hosts: node1
   tasks:
   - name: write timelog
-    shell: date >> ~/timelog.txt
+    shell: date | tee >> ~/timelog.txt
+    register: current_date
+
+  - name: print current date
+    debug:
+      msg: "{{ current_date.stdout }}"

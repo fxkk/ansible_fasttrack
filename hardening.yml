@@ -1,6 +1,6 @@
 ---
 - name: ssh hardening
-  hosts: localhost
+  hosts: webserver
   become: true
   tasks:
   - name: Ensure password authentication is disabled
@@ -13,3 +13,9 @@
     service:
       name: sshd
       state: restarted
+
+  - name: set authorized key
+    authorized_key:
+      user: user
+      state: present
+      key: "{{ lookup('file', '~/.ssh/id_ecdsa.pub') }}"
