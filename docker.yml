@@ -1,0 +1,24 @@
+---
+- name: Setup docker host
+  hosts: webserver
+  become: true
+  roles:
+  - geerlingguy.docker
+
+  tasks:
+  - name: install pip
+    package:
+      name: python3-pip
+      state: present
+
+  - name: install pip requirements
+    pip:
+      name: docker
+
+  - name: Start whomai container
+    community.docker.docker_container:
+      name: whoami
+      image: "containous/whoami:latest"
+      state: started
+      ports:
+      - "8080:80"
