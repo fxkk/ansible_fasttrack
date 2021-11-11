@@ -5,7 +5,9 @@
   tasks:
   - name: Install httpd
     package:
-      name: httpd
+      name: 
+      - httpd
+      - mod_security
       state: present
     when: (ansible_os_family | lower) == "redhat"
 
@@ -14,7 +16,22 @@
       content: "{{ web_content }}"
       dest: /var/www/html/index.html
 
-  - name: Restart httpd service
+  - name: Start httpd service
+    service:
+      name: httpd
+      state: started
+
+  - name: Set server signature
+    template:
+      src: templates/server_signature.j2
+      dest: /etc/httpd/conf.d/serversignature.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify: Restart httpd
+
+  handlers:
+  - name: Restart httpd
     service:
       name: httpd
       state: restarted
