@@ -3,9 +3,13 @@
   hosts: node1
   vars_files:
   - vars/my_vars.yml
+  vars_prompt:
+  - name: mykey
+    prompt: "Enter access Key"
+    private: false
       
   tasks:
   - name: print my variables
     debug:
       msg:
-      - "{{ my_colors['sky'] }}"
+      - "{{ my_num }}"
