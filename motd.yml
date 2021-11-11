@@ -4,6 +4,7 @@
   become: true
 
   tasks:
+
   - name: Query dog facts api
     uri:
       url: https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all
