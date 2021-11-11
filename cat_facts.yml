@@ -11,5 +11,6 @@
   - name: print cat facts
     debug:
       msg:
+      - "{{ cat_facts }}"
       - "{{ cat_facts.json[0] }}"
       - "{{ cat_facts.json | map(attribute='text') | list }}"
