@@ -11,5 +11,4 @@
   tasks:
   - name: print my variables
     debug:
-      msg:
-      - "{{ my_num }}"
+      msg: "{{ my_num }}"

@@ -11,16 +11,26 @@
         - httpd
         - mod_security
         state: present
+      tags: install
+
+    - name: print debug msg
+      debug:
+        msg: "debug text"
+      tags: ['never', 'debug']
 
     - name: Deploy web content
       copy:
-        content: "{{ web_content }}"
+        content: |
+          {{ web_content }}
+          <p>This is my Text </p>
         dest: /var/www/html/index.html
+      tags: configure
 
     - name: Start httpd service
       service:
         name: httpd
         state: started
+      tags: install
 
     - name: Set server signature
       template:
@@ -30,6 +40,7 @@
         group: root
         mode: 0644
       notify: Restart httpd
+      tags: security
 
     when: (ansible_os_family | lower) == "redhat"
 
