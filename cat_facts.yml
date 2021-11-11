@@ -1,0 +1,15 @@
+---
+- name: Work with cat facts
+  hosts: localhost
+  tasks:
+  - name: Query cat facts api
+    uri:
+      url: https://cat-fact.herokuapp.com/facts
+      return_content: true
+    register: cat_facts
+
+  - name: print cat facts
+    debug:
+      msg:
+      - "{{ cat_facts.json[0] }}"
+      - "{{ cat_facts.json | map(attribute='text') | list }}"
